@@ -1,117 +1,229 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>אזהרה</title>
+<title>...</title>
 
 <style>
 
-body{
-
+*{
 margin:0;
 padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#000;
+color:white;
+
 height:100vh;
 
 display:flex;
 justify-content:center;
 align-items:center;
 
-font-family:Segoe UI,Arial,sans-serif;
+font-family:Arial,Helvetica,sans-serif;
 
-background:white;
+overflow:hidden;
+
+transition:opacity .8s;
 
 }
 
-.box{
-
-border:3px solid #ff3a3a;
-
-border-radius:18px;
-
-padding:45px;
+.container{
 
 text-align:center;
 
-box-shadow:0 0 25px rgba(0,0,0,.12);
+animation:fadeIn 1.2s;
 
 }
 
-h1{
+.line1{
 
-font-size:42px;
+font-size:60px;
 
-color:#d60000;
+font-weight:bold;
 
-margin-bottom:10px;
+letter-spacing:2px;
+
+margin-bottom:25px;
+
+color:white;
 
 }
 
-p{
+.line2{
 
-font-size:28px;
+font-size:70px;
 
-margin-bottom:30px;
+font-weight:900;
+
+color:#ff2020;
+
+text-shadow:
+0 0 10px #ff0000,
+0 0 20px #ff0000,
+0 0 40px #ff0000;
+
+margin-bottom:60px;
 
 }
 
 #count{
 
-font-size:70px;
+font-size:150px;
 
 font-weight:bold;
 
-color:#ff0000;
+color:white;
+
+animation:pulse .9s infinite;
+
+text-shadow:
+0 0 10px white,
+0 0 30px white;
+
+}
+
+.progress{
+
+width:450px;
+max-width:85vw;
+
+height:10px;
+
+background:#333;
+
+margin:auto;
+
+margin-top:45px;
+
+border-radius:50px;
+
+overflow:hidden;
+
+}
+
+.bar{
+
+height:100%;
+width:0%;
+background:#ff2020;
+
+transition:width 1s linear;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.15);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:scale(.95);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
 
 }
 
 </style>
 
-<script>
-
-const target="https://www.youtube.com/watch?v=Aq6L5ilesNs&t=143s";
-
-let seconds=5;
-
-function update(){
-
-document.getElementById("count").textContent=seconds;
-
-if(seconds==0){
-
-window.location.href=target;
-
-}
-
-seconds--;
-
-}
-
-window.onload=function(){
-
-update();
-
-setInterval(update,1000);
-
-}
-
-</script>
-
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
-<h1>⚠️ זהירות!</h1>
+<div class="line1">
+אתם בחרתם בזה...
+</div>
 
-<p>הצפייה באחריותך בלבד</p>
+<div class="line2">
+הנה זה מגיע
+</div>
 
-<div id="count"></div>
+<div id="count">5</div>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
 
 </div>
 
-</body>
+<script>
 
+const url="https://www.youtube.com/watch?v=Aq6L5ilesNs";
+
+let sec=5;
+
+const count=document.getElementById("count");
+const bar=document.getElementById("bar");
+
+count.innerHTML=sec;
+
+const timer=setInterval(()=>{
+
+sec--;
+
+bar.style.width=((5-sec)*20)+"%";
+
+if(sec>=0){
+
+count.innerHTML=sec;
+
+}
+
+if(sec<0){
+
+clearInterval(timer);
+
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+
+window.location.href=url;
+
+},800);
+
+}
+
+},1000);
+
+</script>
+
+</body>
 </html>
