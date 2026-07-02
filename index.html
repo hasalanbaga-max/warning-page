@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>אזהרה</title>
+
+<style>
+
+body{
+
+margin:0;
+padding:0;
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-family:Segoe UI,Arial,sans-serif;
+
+background:white;
+
+}
+
+.box{
+
+border:3px solid #ff3a3a;
+
+border-radius:18px;
+
+padding:45px;
+
+text-align:center;
+
+box-shadow:0 0 25px rgba(0,0,0,.12);
+
+}
+
+h1{
+
+font-size:42px;
+
+color:#d60000;
+
+margin-bottom:10px;
+
+}
+
+p{
+
+font-size:28px;
+
+margin-bottom:30px;
+
+}
+
+#count{
+
+font-size:70px;
+
+font-weight:bold;
+
+color:#ff0000;
+
+}
+
+</style>
+
+<script>
+
+const target="https://www.youtube.com/watch?v=Aq6L5ilesNs&t=143s";
+
+let seconds=5;
+
+function update(){
+
+document.getElementById("count").textContent=seconds;
+
+if(seconds==0){
+
+window.location.href=target;
+
+}
+
+seconds--;
+
+}
+
+window.onload=function(){
+
+update();
+
+setInterval(update,1000);
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>⚠️ זהירות!</h1>
+
+<p>הצפייה באחריותך בלבד</p>
+
+<div id="count"></div>
+
+</div>
+
+</body>
+
+</html>
